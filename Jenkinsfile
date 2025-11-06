@@ -67,8 +67,7 @@ pipeline {
 
         stage('Security Scanning & SBOM') {
             environment {
-                OSS_INDEX_USERNAME = credentials('OSS_INDEX_CREDS_USR')
-                OSS_INDEX_PASSWORD = credentials('OSS_INDEX_CREDS_PSW')
+                OSS_CREDS = credentials('OSS_INDEX_CREDS')
             }
             steps {
                 dir('JtProject') {
@@ -86,8 +85,8 @@ pipeline {
                         --nvdApiKey $NVD_API_KEY \
                         --disableAssembly \
                         --disableOssIndex \
-                        --ossIndexUsername "$OSS_INDEX_USERNAME" \
-                        --ossIndexPassword "$OSS_INDEX_PASSWORD"
+                        --ossIndexUsername "$OSS_CREDS_USR" \
+                        --ossIndexPassword "$OSS_CREDS_PSW"
                     '''
                 }
             }

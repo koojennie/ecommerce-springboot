@@ -57,7 +57,6 @@ pipeline {
                     sh '''
                     echo "🏗️ Building Java Spring Boot project..."
                     mvn clean package -DskipTests
-                    ortelius-cli scan --project my-java-app --path target/*.jar
                     '''
                 }
             }

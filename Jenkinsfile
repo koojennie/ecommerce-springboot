@@ -77,7 +77,7 @@ pipeline {
                     ../syft . -o cyclonedx-json > sbom.json || true
 
                     echo "🛡️ Running OWASP Dependency-Check..."
-                    ../dependency-check/bin/dependency-check.sh \
+                    ${WORKSPACE}/dependency-check/bin/dependency-check.sh \
                         --project "JtSpringProject" \
                         --scan ./ \
                         --format JSON \

@@ -42,10 +42,10 @@ public class HibernateConfiguration {
     @Bean
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName(DRIVER);
-        dataSource.setUrl(URL);
-        dataSource.setUsername(USERNAME);
-        dataSource.setPassword(PASSWORD);
+        dataSource.setDriverClassName("org.postgresql.Driver");
+        dataSource.setUrl("jdbc:postgresql://postgres:Sum@Koo@db.kcnazilnchlfyehgbbun.supabase.co:5432/postgres");
+        dataSource.setUsername("postgres");
+        dataSource.setPassword("Sum@Koo");
         return dataSource;
     }
  

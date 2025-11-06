@@ -44,8 +44,11 @@ pipeline {
 
                 echo "📦 Installing OWASP Dependency-Check..."
                 curl -L https://github.com/jeremylong/DependencyCheck/releases/download/v12.1.0/dependency-check-12.1.0-release.zip -o depcheck.zip
-                unzip depcheck.zip -d dependency-check
-                chmod +x dependency-check/dependency-check/bin/dependency-check.sh
+                unzip depcheck.zip
+                mv dependency-check dependency-check-tmp
+                mv dependency-check-tmp/dependency-check ./dependency-check
+                rm -rf dependency-check-tmp
+                chmod +x dependency-check/bin/dependency-check.sh
 
                 echo "📊 Installing OpenSSF Scorecard..."
                 curl -L https://github.com/ossf/scorecard/releases/download/v5.3.0/scorecard_5.3.0_linux_amd64.tar.gz -o scorecard.tar.gz
@@ -77,7 +80,7 @@ pipeline {
                     ../syft . -o cyclonedx-json > sbom.json || true
 
                     echo "🛡️ Running OWASP Dependency-Check..."
-                    ../dependency-check/dependency-check/bin/dependency-check.sh \
+                    ../dependency-check/bin/dependency-check.sh \
                         --project "JtSpringProject" \
                         --scan ./ \
                         --format JSON \

@@ -141,7 +141,7 @@ Version = "v${APP_VERSION}.${BUILD_NUM}"
 
                     ../dh updatecomp --rsp component.toml \
                         --deppkg "cyclonedx@sbom.json" \
-                        --deppkg "dependencycheck@dependency-check-report/dependency-check-report.json" \
+                        --deppkg "dependencycheck@dependency-check-report.json" \
                         --deppkg "scorecard@scorecard.json" \
                         --deploydatasave component.json
                     '''

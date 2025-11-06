@@ -13,7 +13,7 @@ pipeline {
         BUILD_NUM = "${env.BUILD_NUMBER}"
 
         // GitHub repo
-        GITHUB_REPO_URL = "https://github.com/koojennie/ecommerce-springboot.git"
+        GITHUB_REPO_URL = "https://github.com/koojennie/ecommerce-springboot"
         GITHUB_AUTH_TOKEN = credentials('github-token')
 
         // NVD API

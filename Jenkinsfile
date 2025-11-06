@@ -45,9 +45,6 @@ pipeline {
                 echo "📦 Installing OWASP Dependency-Check..."
                 curl -L https://github.com/jeremylong/DependencyCheck/releases/download/v12.1.0/dependency-check-12.1.0-release.zip -o depcheck.zip
                 unzip depcheck.zip
-                mv dependency-check dependency-check-tmp
-                mv dependency-check-tmp/dependency-check ./dependency-check
-                rm -rf dependency-check-tmp
                 chmod +x dependency-check/bin/dependency-check.sh
 
                 echo "📊 Installing OpenSSF Scorecard..."

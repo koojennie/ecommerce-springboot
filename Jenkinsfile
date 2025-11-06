@@ -120,6 +120,8 @@ Application_Version = "${APP_VERSION}"
 Name = "${COMPONENT_NAME}"
 Variant = "springboot-backend"
 Version = "v${APP_VERSION}.${BUILD_NUM}"
+Domain = "GLOBAL"
+Environment = "GLOBAL.JavaEcommerce.Dev"
 
 [Attributes]
   ServiceOwner = "${DHUSER}"

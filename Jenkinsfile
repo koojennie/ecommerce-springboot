@@ -16,6 +16,9 @@ pipeline {
         GITHUB_REPO_URL = "https://github.com/koojennie/ecommerce-springboot.git"
         GITHUB_AUTH_TOKEN = credentials('github-token')
 
+        // NVD API
+        NVD_API_KEY = credentials('NVD_API_KEY')
+
         // Path
         PATH = "/usr/local/bin:${env.PATH}"
     }
@@ -63,6 +66,10 @@ pipeline {
         }
 
         stage('Security Scanning & SBOM') {
+            environment {
+                OSS_INDEX_USERNAME = credentials('OSS_INDEX_CREDS_USR')
+                OSS_INDEX_PASSWORD = credentials('OSS_INDEX_CREDS_PSW')
+            }
             steps {
                 dir('JtProject') {
                     sh '''
@@ -75,7 +82,12 @@ pipeline {
                         --scan ./ \
                         --format JSON \
                         --out dependency-check-report \
-                        --disableAssembly
+                        --data ../dependency-check-data \
+                        --nvdApiKey $NVD_API_KEY \
+                        --disableAssembly \
+                        --disableOssIndex \
+                        --ossIndexUsername "$OSS_INDEX_USERNAME" \
+                        --ossIndexPassword "$OSS_INDEX_PASSWORD"
                     '''
                 }
             }
